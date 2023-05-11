@@ -1,0 +1,37 @@
+version: "3"
+services:
+  kupiback:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    depends_on:
+      - postgres
+    environment:
+      - JWT_SECRET='jwtKey'
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4000:3000"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: "student"
+    volumes:
+      # монтируем директорию ./pg-data основной ОС в директорию с данными в контейнере
+      - ./pg-data:/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+
+  kupifront:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    ports:
+      - "8081:80"
+    restart: unless-stopped
