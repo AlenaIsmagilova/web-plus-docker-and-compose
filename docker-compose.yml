@@ -7,8 +7,6 @@ services:
     image: backend
     depends_on:
       - postgres
-    environment:
-      - JWT_SECRET='jwtKey'
     env_file:
       - ./backend/.env
     ports:
@@ -21,12 +19,6 @@ services:
       - "5432:5432"
     env_file:
       - ./backend/.env
-    environment:
-      PGDATA: /var/lib/postgresql/data2/pgdata
-      POSTGRES_PASSWORD: student
-      POSTGRES_USER: student
-      POSTGRES_DB: nest_project
-      POSTGRES_HOST: postgres
     volumes:
       - ./pg-data:/var/lib/postgresql/data2/pgdata
     restart: unless-stopped
