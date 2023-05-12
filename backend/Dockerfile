@@ -24,4 +24,4 @@ RUN npm install pm2 -g
 
 EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+CMD ["pm2-runtime", "start", "dist/main.js"]

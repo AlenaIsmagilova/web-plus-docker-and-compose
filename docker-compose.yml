@@ -16,15 +16,19 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: postgres:latest
+    image: postgres:15.3-alpine
     ports:
       - "5432:5432"
+    env_file:
+      - ./backend/.env
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_PASSWORD: "student"
+      PGDATA: /var/lib/postgresql/data2/pgdata
+      POSTGRES_PASSWORD: student
+      POSTGRES_USER: student
+      POSTGRES_DB: nest_project
+      POSTGRES_HOST: postgres
     volumes:
-      # монтируем директорию ./pg-data основной ОС в директорию с данными в контейнере
-      - ./pg-data:/var/lib/postgresql/data/pgdata
+      - ./pg-data:/var/lib/postgresql/data2/pgdata
     restart: unless-stopped
 
   kupifront:
