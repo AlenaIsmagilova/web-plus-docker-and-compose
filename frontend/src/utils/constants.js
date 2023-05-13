@@ -1,5 +1,4 @@
-// export const URL = "http://api.kpd.alena.nomoredomains.monster";
-export const URL = "http://localhost:4000";
+export const URL = "http://api.kpd.alena.nomoredomains.monster";
 
 export const MINIMUM_PASSWORD_LENGTH = 3;
 export const MINIMUM_USERNAME_LENGTH = 3;
